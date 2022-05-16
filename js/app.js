@@ -16,7 +16,7 @@ const isLiked = (id) => {
 };
 
 const addToLiked = (id) => {
-    likedPostsId.plus(id); 
+    likedPostsId.push(id); 
     showPosts(posts);
 };
 
@@ -122,7 +122,7 @@ const createPost = (post) => {
                       <a class="post__name--underline" href="#">
                           ${post.comments?.user}
                       </a>
-                      ${post.comments?.text}
+                      ${post.comments?.user}
                     </small>
                   </div>
                   <span class="post__date-time">30 minutes ago</span>
@@ -134,7 +134,7 @@ const createPost = (post) => {
 
 const showPosts = (posts) => {
     const productsContainer = document.getElementById( "posts" );
-    productsContainer.innerHTML = "";
+    // productsContainer.innerHTML = "";
 
     posts.forEach((post) => {
         const div = createPost(post);
