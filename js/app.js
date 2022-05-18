@@ -27,7 +27,8 @@ const reportPost = (id) => {
 };
 
 const displayContent = (text) => {
-    return text.length < 30 ? 'text' : text.slice(0, 30) + "<span class='fw-bold'>... read more</span>";
+  // console.log(text);
+    return text.length < 30 ? text : text.slice(0, 30) + "<span class='fw-bold'>... read more</span>";
 };
 
 const switchTab = (id) => {
@@ -51,7 +52,9 @@ const switchTab = (id) => {
 };
 
 const createPost = (post) => {
+  console.log(post.comments[0].text);
     const image = post.image;
+    // console.log(image);
     const div = document.createElement( "article" );
     div.classList.add( "post" );
     div.innerHTML = `
@@ -62,7 +65,7 @@ const createPost = (post) => {
                     target="_blank"
                     class="post__avatar"
                   >
-                    <img src="${image}" alt="User Picture" />
+                    <img src="${post.userImage}" alt="User Picture" />
                   </a>
                   <a href="#" class="post__user">phero</a>
                 </div>
@@ -120,9 +123,9 @@ const createPost = (post) => {
                   <div class="post__description">
                     <small>
                       <a class="post__name--underline" href="#">
-                          ${post.comments?.user}
+                          ${post.comments[0].user}
                       </a>
-                      ${post.comments?.user}
+                      ${post.comments[0].text}
                     </small>
                   </div>
                   <span class="post__date-time">30 minutes ago</span>
@@ -134,7 +137,7 @@ const createPost = (post) => {
 
 const showPosts = (posts) => {
     const productsContainer = document.getElementById( "posts" );
-    // productsContainer.innerHTML = "";
+    productsContainer.innerHTML = "";
 
     posts.forEach((post) => {
         const div = createPost(post);
